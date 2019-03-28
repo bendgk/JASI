@@ -1,12 +1,5 @@
 # Just Another Snake Implementation
 
-## Table of Contents
-
-- [Installation](#installation)
-- [Usage](#usage)
-- [Support](#support)
-- [Contributing](#contributing)
-
 ## Installation
 1. Clone the repository with `git clone https://github.com/bendgk/JASI` or download the zip
 2. run `make game` in the root directory
