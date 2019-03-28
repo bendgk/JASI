@@ -53,7 +53,7 @@ int main (int argc, char *argv[]) {
 			printw("Input: %c\n", c);
 		printw("frame: %d\n", frames);
 
-		nanosleep((const struct timespec[]){{0, 100000000L}}, NULL);
+		nanosleep((const struct timespec[]){{0, 1g00000000L}}, NULL);
 	}
 	endwin();
 	system("clear");
