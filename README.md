@@ -7,3 +7,5 @@
 
 ## Usage
 Play a run of the mill snake implementation written in C
+
+![](res/Mar-28-2019%2005-07-19.gif)
