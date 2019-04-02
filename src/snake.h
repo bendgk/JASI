@@ -9,8 +9,8 @@ typedef struct _Snake {
 	int y_direction;
 	char direction;
 
-	int x;
-	int y;
+	unsigned int x;
+	unsigned int y;
 } Snake;
 
 void initSnake(Snake *s, int x, int y); 

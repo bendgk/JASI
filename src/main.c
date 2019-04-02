@@ -1,7 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
-#include <termios.h>
 #include <curses.h>
 #include <time.h>
 #include "game.h"
@@ -33,11 +32,19 @@ int main (int argc, char *argv[]) {
 		clock_gettime(CLOCK_MONOTONIC_RAW, &current);
 		if (((current.tv_sec - last.tv_sec) * 1000000 + (current.tv_nsec - last.tv_nsec) / 1000) >= dt) {
 			//update game state
-			put(&game, snake.x, snake.y, 's');
+			if (checkBounds(snake.x, snake.y)) {
+				//snake is in bounds of map continue game logic
+				put(&game, snake.x, snake.y, 's');
 			
-			Node *popped = moveSnake(&snake);
-			if (popped != NULL)
-				put(&game, popped->x, popped->y, GAME_CHAR);
+				Node *popped = moveSnake(&snake);
+				if (popped != NULL)
+					put(&game, popped->x, popped->y, GAME_CHAR);
+			}
+
+			else {
+				//snake is not in bounds of map so quit game
+				break;
+			}
 
 			//update last clock
 			clock_gettime(CLOCK_MONOTONIC_RAW, &last);
@@ -53,10 +60,10 @@ int main (int argc, char *argv[]) {
 			printw("Input: %c\n", c);
 		printw("frame: %d\n", frames);
 
-		nanosleep((const struct timespec[]){{0, 1g00000000L}}, NULL);
+		nanosleep((const struct timespec[]){{0, 100000000L}}, NULL);
 	}
 	endwin();
 	system("clear");
-	printf("Thank you for playing!\n");
+	printf("Thanks for playing!\n");
 	return 0;
 }

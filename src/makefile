@@ -5,7 +5,5 @@ queue: queue.c
 	cc -Wall -Wextra -g queue.c -o queue -v
 
 clean:
-	rm queue
 	rm game
 	rm -rf game.dSYM
-	rm -rf queue.dSYM
