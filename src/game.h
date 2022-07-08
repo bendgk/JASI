@@ -2,6 +2,7 @@
 #define WIDTH 20
 #define HEIGHT 10
 #define GAME_CHAR ' '
+#define FRUIT_CHAR '*'
 
 typedef struct _Game {
 	char map[HEIGHT][WIDTH];

@@ -34,6 +34,27 @@ int main (int argc, char *argv[]) {
 			//update game state
 			if (checkBounds(snake.x, snake.y)) {
 				//snake is in bounds of map continue game logic
+
+				if (get(&game, snake.x, snake.y) == 's') {
+					break;
+				}
+
+				if (get(&game, snake.x, snake.y) == FRUIT_CHAR) {
+					growSnake(&snake);
+					put(&game, snake.x, snake.y, GAME_CHAR);
+					
+
+					//put a fruit
+					int rand_x;
+					int rand_y;
+					do {
+						rand_x = rand()%WIDTH;
+						rand_y = rand()%HEIGHT;
+					} while (get(&game, rand_x, rand_y) != GAME_CHAR);
+
+					put(&game, rand_x, rand_y, FRUIT_CHAR);
+				}
+
 				put(&game, snake.x, snake.y, 's');
 			
 				Node *popped = moveSnake(&snake);

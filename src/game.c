@@ -28,6 +28,8 @@ void render(Game *game) {
 }
 
 void initGame(Game *game) {
+	srand(time(NULL));
+
 	/* setup terminal */
 	initscr();
 	noecho();
@@ -36,6 +38,15 @@ void initGame(Game *game) {
 	for (int i = 0; i < (HEIGHT * WIDTH); i++) {
 		game -> map[i/WIDTH][i%WIDTH] = GAME_CHAR;
 	}
+
+	int rand_x;
+	int rand_y;
+	do {
+		rand_x = rand()%WIDTH;
+		rand_y = rand()%HEIGHT;
+	} while (get(game, rand_x, rand_y) != GAME_CHAR);
+
+	put(game, rand_x, rand_y, FRUIT_CHAR);
 }
 
 void put(Game *game, unsigned int x, unsigned int y, char c) {
